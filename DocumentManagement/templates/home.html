@@ -1,0 +1,23 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+<a href="{% url 'userview' %}">Registered User</a><br>
+<a href="{% url 'list' %}">My list</a><br>
+  <a href="{% url 'shared-file' %}">shared-file</a><br>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+
+  <p>If you don't have any account then create account</p>
+  <a href="{% url 'signup' %}">Sign Up</a>
+
+  <p>API Documentation</p>
+  <a href="{% url 'api-doc' %}">Api Documentation</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}shared user{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+                {% if request.user == file.author %}
+                <div class="row justify-content-center mt-3 mb-5">
+        <div class="container">
+    <div class="col my-4">
+
+        <form method="post" action="#">
+            {% csrf_token %}
+
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Share</button>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        </form>
+    </div></div>
+                    <strong><h4>Share With : </h4></strong>
+    {% for share in shares %}
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <p>
+                <strong>{{share.share_with }}</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+    {% endfor %}
+            {% endif %}
+
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}documentupload{% endblock %}
+
+{% block content %}
+<h2>Document Upload</h2>
+<div class="p-8 flex flex-col items-center">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-red-500">{{ form.file.errors }}</div>
+     <button type="submit">submit</button>
+    </form>
+</div>
+{% endblock %}
